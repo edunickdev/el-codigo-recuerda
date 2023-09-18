@@ -1,11 +1,15 @@
 import 'package:flutter/material.dart';
 
+import '../widgets/text_list_widget.dart';
+
 class Navbar extends StatelessWidget {
   const Navbar({super.key});
 
   @override
   Widget build(BuildContext context) {
     final sizeWidth = MediaQuery.of(context).size.width;
+    final listaIzquierda = ["Desarrollador de software", "Data analyst", "Desarrollo móvil"];
+    final listaDerecha = ["Python", "Flutter", "Dart"];
 
     return Container(
       height: 100,
@@ -15,42 +19,19 @@ class Navbar extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.spaceAround,
         children: [
           SizedBox(
-              width: sizeWidth / 5,
-              child: Image.asset(
-                "assets/images/logo-claro.png",
-                height: 80,
-                width: 160,
-              )),
+            width: sizeWidth / 3,
+            child: TextListWidget(listaPalabras: listaIzquierda, valorDuracion: 5)),
           SizedBox(
-            width: sizeWidth / 5,
-            child: const Text.rich(
-              TextSpan(
-                text: "ECR",
-                style: TextStyle(
-                  fontSize: 30,
-                  fontWeight: FontWeight.bold,
-                ),
-              ),
+            width: sizeWidth / 3,
+            child: Image.asset(
+              "assets/images/logo-claro.png",
+              height: 80,
+              width: 160,
             ),
           ),
-          const Text.rich(
-            TextSpan(
-              text: "El Código",
-              style: TextStyle(
-                  fontSize: 30,
-                  fontWeight: FontWeight.bold,
-                  color: Colors.brown),
-            ),
-          ),
-          Text.rich(
-            TextSpan(
-              text: "Recuerda",
-              style: TextStyle(
-                  fontSize: 30,
-                  fontWeight: FontWeight.bold,
-                  color: Colors.yellow[400]),
-            ),
-          ),
+          SizedBox(
+            width: sizeWidth / 3,
+            child: TextListWidget(listaPalabras: listaDerecha, valorDuracion: 3)),
         ],
       ),
     );

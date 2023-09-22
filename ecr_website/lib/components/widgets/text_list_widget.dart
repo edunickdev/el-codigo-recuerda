@@ -23,7 +23,8 @@ class TextCiclico extends StatefulWidget {
   final List<String> palabras;
   final Duration intervalo;
 
-  const TextCiclico({super.key, required this.palabras, required this.intervalo});
+  const TextCiclico(
+      {super.key, required this.palabras, required this.intervalo});
 
   @override
   _TextCiclicoState createState() => _TextCiclicoState();
@@ -51,12 +52,14 @@ class _TextCiclicoState extends State<TextCiclico> {
 
   @override
   Widget build(BuildContext context) {
-    return BounceInLeft(
+    return BounceInDown(
       delay: const Duration(milliseconds: 500),
       animate: true,
-      child: Text(
-        widget.palabras[indice],
-        style: const TextStyle(fontSize: 24, color: Colors.white),
+      child: Text.rich(
+        TextSpan(
+          text: widget.palabras[indice],
+          style: const TextStyle(fontSize: 24, color: Colors.white),
+        ),
       ),
     );
   }

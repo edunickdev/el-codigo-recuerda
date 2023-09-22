@@ -10,8 +10,24 @@ final GoRouter router = GoRouter(
       builder: (context, state) => const HomeScreen(),
     ),
     GoRoute(
-      path: '/home',
+      path: '/mains',
       builder: (context, state) => const MainScreen(),
+    ),
+    GoRoute(
+      path: '/others',
+      builder: (context, state) => const OthersScreen(),
+    ),
+    GoRoute(
+      path: '/projects',
+      builder: (context, state) => const ProjectsScreen(),
+    ),
+    GoRoute(
+      path: '/me',
+      builder: (context, state) => const AboutMeScreen(),
+    ),
+    GoRoute(
+      path: '/contact',
+      builder: (context, state) => const ContactScreen(),
     ),
   ],
 );

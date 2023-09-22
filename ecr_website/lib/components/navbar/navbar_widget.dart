@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 
 import '../widgets/text_list_widget.dart';
 
@@ -9,7 +10,7 @@ class Navbar extends StatelessWidget {
   Widget build(BuildContext context) {
     final sizeWidth = MediaQuery.of(context).size.width;
     final listaIzquierda = ["Desarrollador de software", "Data analyst", "Desarrollo móvil"];
-    final listaDerecha = ["Python", "Flutter", "Dart"];
+    final listaDerecha = ["Python", "Dart", "SQL", "NoSQL"];
 
     return Container(
       height: 100,
@@ -23,10 +24,15 @@ class Navbar extends StatelessWidget {
             child: TextListWidget(listaPalabras: listaIzquierda, valorDuracion: 5)),
           SizedBox(
             width: sizeWidth / 3,
-            child: Image.asset(
-              "assets/images/logo-claro.png",
-              height: 80,
-              width: 160,
+            child: InkWell(
+              onTap: () {
+                context.pop("/home");
+              },
+              child: Image.asset(
+                "assets/images/logo-claro.png",
+                height: 80,
+                width: 160,
+              ),
             ),
           ),
           SizedBox(

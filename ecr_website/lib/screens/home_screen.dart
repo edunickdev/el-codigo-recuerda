@@ -38,7 +38,7 @@ class HomeScreen extends StatelessWidget {
                     height: 45,
                     child: ElevatedButton(
                       onPressed: () {
-                        context.push("/home");
+                        context.push("/mains");
                       },
                       style: ButtonStyle(
                         backgroundColor:

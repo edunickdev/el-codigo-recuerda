@@ -27,7 +27,7 @@ class NavigateWidget extends StatelessWidget {
                       style: const ButtonStyle(
                           side: MaterialStatePropertyAll(BorderSide.none)),
                       onPressed: () {
-                        context.push(rutas[i]);
+                        context.pushReplacement(rutas[i]);
                       },
                       child: Text(
                         secciones[i],

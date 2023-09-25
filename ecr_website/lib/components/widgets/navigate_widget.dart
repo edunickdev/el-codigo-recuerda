@@ -12,7 +12,7 @@ class NavigateWidget extends StatelessWidget {
     final size = MediaQuery.of(context).size;
 
     return SizedBox(
-      height: size.height / 11,
+      height: size.height * 0.11,
       child: Row(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [

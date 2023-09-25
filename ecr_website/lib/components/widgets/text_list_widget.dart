@@ -52,6 +52,7 @@ class _TextCiclicoState extends State<TextCiclico> {
 
   @override
   Widget build(BuildContext context) {
+
     return BounceInDown(
       delay: const Duration(milliseconds: 500),
       animate: true,

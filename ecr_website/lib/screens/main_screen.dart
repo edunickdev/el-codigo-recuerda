@@ -11,8 +11,12 @@ class MainScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return const Scaffold(
-      body: Column(
-        children: [Navbar(), NavigateWidget(), ContentMain()],
+      body: SingleChildScrollView(
+        child: Column(
+          mainAxisSize: MainAxisSize.max,
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [Navbar(), NavigateWidget(), ContentMain()],
+        ),
       ),
     );
   }
@@ -30,13 +34,15 @@ class ContentMain extends StatelessWidget {
     const greyMain = Color.fromARGB(255, 120, 136, 151);
 
     return SizedBox(
-      height: size.height * 0.8,
+      height: size.width < 620 ? size.height * 1.35 : size.height * 0.73,
+      width: size.width,
       child: Row(
         children: [
           Stack(
             children: [
               Container(
-                height: size.height * 0.8,
+                height:
+                    size.width < 620 ? size.height * 1.35 : size.height * 0.73,
                 width: size.width,
                 color: Colors.white,
               ),
@@ -63,7 +69,9 @@ class ContentMain extends StatelessWidget {
                   delay: const Duration(milliseconds: 500),
                   duration: const Duration(milliseconds: 2000),
                   child: Container(
-                    height: size.height * 0.8,
+                    height: size.width < 620
+                        ? size.height * 0.8
+                        : size.height * 0.6,
                     width: size.width * 0.5,
                     decoration: const BoxDecoration(
                       shape: BoxShape.circle,
@@ -120,57 +128,101 @@ class ContentMain extends StatelessWidget {
                   ),
                 ),
               ),
-              Positioned(
-                top: size.height * 0.15,
-                left: size.width * 0.33,
-                child: AnimatedTextKit(
-                  animatedTexts: [
-                    TypewriterAnimatedText(
-                      "Mis tecnologías preferidas y \nmi experiencia con ellas.",
-                      textAlign: TextAlign.center,
-                      textStyle: TextStyle(
-                        fontSize: size.width * 0.02,
-                        fontWeight: FontWeight.bold,
-                        color: Colors.blueGrey,
-                      ),
-                      speed: const Duration(milliseconds: 100),
-                    ),
-                  ],
-                ),
-              ),
-              Positioned(
-                top: size.height * 0.30,
-                left: size.width * 0.15,
-                child: FadeInRight(
-                  duration: const Duration(milliseconds: 2000),
-                  child: Text(
-                    "Python, en proyectos que involucran Scrapping, \ncreación de interfazes gráficas, almacenamiento y consumo de bases de datos, \nanálisis y generación de informes. si deseas conocer más, haz click",
-                    style: TextStyle(
-                      fontSize: size.width * 0.011,
-                      fontWeight: FontWeight.bold,
-                      color: blueHard,
-                    ),
-                  ),
-                ),
-              ),
-              Positioned(
-                top: size.height * 0.45,
-                right: size.width * 0.12,
-                child: FadeInLeft(
-                  duration: const Duration(milliseconds: 2000),
-                  child: Text(
-                    "Dart, en la creación de demos, \nintegrando transcripcion de voz a texto, algunas otras aplicaciones sencillas como TODO's, \ncon conexiones a Firebase, ChatGPT entre otros. si deseas conocer más, haz click",
-                    style: TextStyle(
-                      fontSize: size.width * 0.011,
-                      fontWeight: FontWeight.bold,
-                      color: blueHard,
-                    ),
-                  ),
-                ),
-              ),
+              MainTextContent(key: key,)
             ],
           ),
         ],
+      ),
+    );
+  }
+}
+
+class MainTextContent extends StatelessWidget {
+  const MainTextContent({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    final size = MediaQuery.of(context).size;
+    const blueHard = Color.fromARGB(255, 28, 36, 55);
+    const greyMain = Color.fromARGB(255, 120, 136, 151);
+
+    return SizedBox(
+      width: size.width * 0.8,
+      height: size.height * 0.72,
+      child: Padding(
+        padding: const EdgeInsets.symmetric(horizontal: 100, vertical: 50),
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+          children: [
+            Positioned(
+              width: size.width / 2,
+              top: 60,
+              left: size.width * 0.33,
+              child: AnimatedTextKit(
+                animatedTexts: [
+                  TypewriterAnimatedText(
+                    "Mi experiencia con mis tecnologías preferidas.",
+                    textAlign: TextAlign.center,
+                    textStyle: TextStyle(
+                      fontSize: size.width < 620 ? 25 : 30,
+                      fontWeight: FontWeight.bold,
+                      color: greyMain,
+                    ),
+                    speed: const Duration(milliseconds: 100),
+                  ),
+                ],
+              ),
+            ),
+            Positioned(
+              width: size.width * 0.2,
+              top: size.height * 0.30,
+              left: size.width * 0.18,
+              child: FadeInRight(
+                duration: const Duration(milliseconds: 2000),
+                child: Padding(
+                  padding: const EdgeInsets.symmetric(vertical: 20),
+                  child: Text(
+                    "Python, en proyectos que involucran Scrapping, creación de interfazes gráficas, almacenamiento y consumo de bases de datos, análisis y generación de informes. si deseas conocer más, haz click",
+                    style: TextStyle(
+                      fontSize: size.width <= 620
+                          ? 18
+                          : size.width > 620 || size.width <= 860
+                              ? 25
+                              : 30,
+                      fontWeight: FontWeight.bold,
+                      color: blueHard,
+                    ),
+                    softWrap: true,
+                  ),
+                ),
+              ),
+            ),
+            Positioned(
+              width: size.width / 1.5,
+              top: size.width < 620 ? size.height * 0.7 : size.height * 0.45,
+              right: size.width * 0.12,
+              child: FadeInLeft(
+                duration: const Duration(milliseconds: 2000),
+                child: Padding(
+                  padding: const EdgeInsets.symmetric(vertical: 20),
+                  child: Text(
+                    "Dart, en la creación de demos, integrando transcripcion de voz a texto, algunas otras aplicaciones sencillas como TODO's, con conexiones a Firebase, ChatGPT entre otros. si deseas conocer más, haz click",
+                    style: TextStyle(
+                      fontSize: size.width < 620
+                          ? 18
+                          : size.width > 620 || size.width <= 860
+                              ? 25
+                              : 30,
+                      fontWeight: FontWeight.bold,
+                      color: blueHard,
+                    ),
+                    softWrap: true,
+                  ),
+                ),
+              ),
+            ),
+          ],
+        ),
       ),
     );
   }

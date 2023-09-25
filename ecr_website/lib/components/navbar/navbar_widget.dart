@@ -11,11 +11,12 @@ class Navbar extends StatelessWidget {
     final sizeWidth = MediaQuery.of(context).size.width;
     final listaIzquierda = ["Desarrollador de software", "Data analyst", "Desarrollo móvil"];
     final listaDerecha = ["Python", "Dart", "SQL", "NoSQL"];
+    const blueMid = Color.fromARGB(255, 37, 86, 129);
 
     return Container(
       height: 100,
       width: double.infinity,
-      color: Colors.blueGrey[600],
+      color: blueMid,
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceAround,
         children: [
